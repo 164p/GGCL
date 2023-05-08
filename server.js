@@ -2,13 +2,17 @@ const express = require('express')
 const cors = require('cors')
 const app = express()
 const port = 3000
+var path = require('path')
+
 
 app.use(cors())
 app.use(express.json());
 
+app.use(express.static('admin'));
+
 app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+  res.sendFile(__dirname + '/admin/index.html');
+});
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
